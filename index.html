@@ -6,1137 +6,855 @@
 <title>Briefing — Tráfego Pago</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f7f6f3;
-  --bg2: #ffffff;
-  --bg3: #f0efe9;
-  --border: rgba(0,0,0,0.08);
-  --border-md: rgba(0,0,0,0.13);
-  --border-strong: rgba(0,0,0,0.2);
-  --accent: #2a52e8;
-  --accent-light: #eef1fd;
-  --accent-mid: rgba(42,82,232,0.15);
-  --text: #111118;
-  --text2: #6b6b80;
-  --text3: #a8a8b8;
-  --success: #16a34a;
-  --success-bg: #f0fdf4;
-  --success-border: rgba(22,163,74,0.2);
-  --error: #dc2626;
-  --card-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --radius: 10px;
-  --radius-lg: 16px;
+  --accent:      #2a52e8;
+  --accent-d:    #1f3fc5;
+  --accent-l:    #eef1fd;
+  --accent-mid:  rgba(42,82,232,0.13);
+  --bg:          #f7f6f3;
+  --bg2:         #ffffff;
+  --bg3:         #f0efe9;
+  --border:      rgba(0,0,0,0.08);
+  --border-m:    rgba(0,0,0,0.14);
+  --border-s:    rgba(0,0,0,0.22);
+  --text:        #111118;
+  --text2:       #6b6b80;
+  --text3:       #a8a8b8;
+  --ok:          #16a34a;
+  --ok-bg:       #f0fdf4;
+  --ok-border:   rgba(22,163,74,0.2);
+  --erro:        #dc2626;
+  --warn-bg:     #fffbeb;
+  --warn-border: rgba(202,138,4,0.25);
+  --warn-text:   #854d0e;
+  --r:           10px;
+  --rlg:         16px;
+  --shadow:      0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
 }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,0,0,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.022) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
 
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-/* subtle grid */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px);
-  background-size: 48px 48px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.container {
-  max-width: 660px;
-  margin: 0 auto;
-  padding: 48px 20px 80px;
-  position: relative;
-  z-index: 1;
-}
+.container{max-width:680px;margin:0 auto;padding:48px 20px 80px;position:relative;z-index:1}
 
 /* ── Header ── */
-.site-header {
-  margin-bottom: 40px;
-  animation: fadeUp 0.55s ease both;
-}
-.logo-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 28px;
-}
-.logo-mark {
-  width: 32px; height: 32px;
-  background: var(--accent);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.logo-mark svg { width: 16px; height: 16px; }
-.logo-name {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text);
-  letter-spacing: -0.01em;
-}
-.logo-sep { color: var(--text3); font-size: 13px; }
-.logo-sub { font-size: 13px; color: var(--text2); font-weight: 400; }
+.header{margin-bottom:40px;animation:fadeUp .55s ease both}
+.logo-row{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.logo-mark{width:32px;height:32px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.logo-mark svg{width:15px;height:15px;color:#fff}
+.logo-name{font-size:13px;font-weight:600;color:var(--text);letter-spacing:-.01em}
+.logo-sep{color:var(--text3);font-size:13px}
+.logo-sub{font-size:13px;color:var(--text2)}
+.header h1{font-family:'Instrument Serif',serif;font-size:clamp(34px,6vw,52px);font-weight:400;line-height:1.1;letter-spacing:-.03em;margin-bottom:14px}
+.header h1 em{font-style:italic;color:var(--accent)}
+.header p{font-size:15px;color:var(--text2);line-height:1.7;font-weight:300;max-width:480px}
 
-.site-header h1 {
-  font-family: 'Instrument Serif', serif;
-  font-size: clamp(34px, 6vw, 52px);
-  font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  color: var(--text);
-  margin-bottom: 14px;
-}
-.site-header h1 em {
-  font-style: italic;
-  color: var(--accent);
-}
-.site-header p {
-  font-size: 15px;
-  color: var(--text2);
-  line-height: 1.7;
-  font-weight: 300;
-  max-width: 460px;
-}
-
-/* ── Progress ── */
-.progress-wrap {
-  margin-bottom: 24px;
-  animation: fadeUp 0.55s 0.08s ease both;
-}
-.progress-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-}
-.progress-label { font-size: 12px; color: var(--text3); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
-.progress-pct { font-size: 12px; color: var(--accent); font-weight: 600; }
-.progress-track {
-  height: 2px;
-  background: var(--border);
-  border-radius: 2px;
-  overflow: hidden;
-}
-.progress-fill {
-  height: 100%;
-  background: var(--accent);
-  border-radius: 2px;
-  transition: width 0.45s cubic-bezier(0.4,0,0.2,1);
-}
-.step-dots {
-  display: flex;
-  gap: 5px;
-  margin-top: 10px;
-}
-.step-dot {
-  flex: 1; height: 2px;
-  background: var(--border-md);
-  border-radius: 2px;
-  transition: background 0.3s;
-}
-.step-dot.done { background: var(--accent); opacity: 0.35; }
-.step-dot.active { background: var(--accent); }
+/* ── Progresso ── */
+.progress-wrap{margin-bottom:24px;animation:fadeUp .55s .08s ease both}
+.progress-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.progress-label{font-size:12px;color:var(--text3);font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.progress-pct{font-size:12px;color:var(--accent);font-weight:600}
+.progress-track{height:2px;background:var(--border);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:var(--accent);border-radius:2px;transition:width .45s cubic-bezier(.4,0,.2,1)}
+.step-dots{display:flex;gap:5px;margin-top:10px}
+.step-dot{flex:1;height:2px;background:var(--border-m);border-radius:2px;transition:background .3s}
+.step-dot.done{background:var(--accent);opacity:.35}
+.step-dot.active{background:var(--accent)}
 
 /* ── Card ── */
-.form-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 36px;
-  box-shadow: var(--card-shadow);
-  animation: fadeUp 0.55s 0.12s ease both;
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rlg);padding:36px;box-shadow:var(--shadow);animation:fadeUp .55s .12s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── Step header ── */
-.step-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  margin-bottom: 28px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--border);
-}
-.step-icon {
-  width: 38px; height: 38px; flex-shrink: 0;
-  border-radius: 9px;
-  background: var(--accent-light);
-  border: 1px solid rgba(42,82,232,0.12);
-  display: flex; align-items: center; justify-content: center;
-  margin-top: 2px;
-}
-.step-icon svg { width: 17px; height: 17px; color: var(--accent); }
-.step-info h2 {
-  font-family: 'Instrument Serif', serif;
-  font-size: 22px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin-bottom: 3px;
-}
-.step-info p { font-size: 13px; color: var(--text2); font-weight: 300; line-height: 1.5; }
+.step-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+.step-icon{width:38px;height:38px;flex-shrink:0;border-radius:9px;background:var(--accent-l);border:1px solid rgba(42,82,232,0.12);display:flex;align-items:center;justify-content:center;margin-top:2px}
+.step-icon svg{width:17px;height:17px;color:var(--accent)}
+.step-info h2{font-family:'Instrument Serif',serif;font-size:22px;font-weight:400;letter-spacing:-.02em;line-height:1.2;margin-bottom:3px}
+.step-info p{font-size:13px;color:var(--text2);font-weight:300;line-height:1.5}
 
-/* ── Fields ── */
-.field { margin-bottom: 20px; }
-.field-label {
-  display: block; font-size: 13px; font-weight: 500;
-  color: var(--text); margin-bottom: 6px; letter-spacing: 0.005em;
-}
-.field-label .req { color: var(--accent); margin-left: 2px; }
-.field-hint { display: block; font-size: 11px; color: var(--text3); margin-bottom: 7px; line-height: 1.5; }
-.alert-badge {
-  display: inline-flex; align-items: center; gap: 4px;
-  font-size: 10px; font-weight: 500;
-  background: #fff8e6; border: 1px solid rgba(202,138,4,0.25);
-  color: #92620a; border-radius: 100px;
-  padding: 2px 8px; margin-left: 6px; letter-spacing: 0.02em;
-}
-.alert-badge svg { width: 10px; height: 10px; }
+/* ── Separador interno ── */
+.secao{font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 14px;display:flex;align-items:center;gap:8px}
+.secao::after{content:'';flex:1;height:1px;background:var(--border)}
 
-input[type=text], input[type=number], input[type=email],
-input[type=tel], select, textarea {
-  width: 100%;
-  background: var(--bg);
-  border: 1px solid var(--border-md);
-  border-radius: var(--radius);
-  padding: 10px 13px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  color: var(--text);
-  outline: none;
-  transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
-  -webkit-appearance: none;
-  appearance: none;
-}
-select {
-  cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b6b80' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  padding-right: 34px;
-}
-textarea { resize: vertical; min-height: 84px; line-height: 1.6; }
-input::placeholder, textarea::placeholder { color: var(--text3); }
-input:focus, select:focus, textarea:focus {
-  border-color: var(--accent);
-  background: var(--bg2);
-  box-shadow: 0 0 0 3px var(--accent-mid);
-}
+/* ── Campos ── */
+.campo{margin-bottom:20px}
+.campo-label{display:block;font-size:13px;font-weight:500;color:var(--text);margin-bottom:6px;letter-spacing:.005em}
+.campo-label .req{color:var(--accent);margin-left:2px}
+.campo-dica{display:block;font-size:11px;color:var(--text3);margin-bottom:7px;line-height:1.5}
+.badge-imp{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:500;background:var(--warn-bg);border:1px solid var(--warn-border);color:var(--warn-text);border-radius:100px;padding:2px 7px;margin-left:6px;letter-spacing:.01em}
+.badge-imp svg{width:9px;height:9px}
 
-.cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-@media (max-width: 480px) { .cols2 { grid-template-columns: 1fr; } }
+input[type=text],input[type=number],input[type=email],input[type=tel],select,textarea{width:100%;background:var(--bg);border:1px solid var(--border-m);border-radius:var(--r);padding:10px 13px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text);outline:none;transition:border-color .18s,box-shadow .18s,background .18s;-webkit-appearance:none;appearance:none}
+select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b6b80' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:34px}
+textarea{resize:vertical;min-height:84px;line-height:1.6}
+input::placeholder,textarea::placeholder{color:var(--text3)}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);background:var(--bg2);box-shadow:0 0 0 3px var(--accent-mid)}
+
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.cols2{grid-template-columns:1fr}}
+
+/* campo "outro qual" — aparece dinamicamente */
+.outro-campo{margin-top:8px;display:none}
+.outro-campo.visivel{display:block}
+.outro-campo input{font-size:12px;padding:8px 12px}
 
 /* ── Radio / Checkbox ── */
-.radio-group, .check-group { display: flex; flex-direction: column; gap: 6px; }
-.radio-item, .check-item {
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 13px;
-  border: 1px solid var(--border-md);
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-size: 13px;
-  color: var(--text2);
-  transition: border-color 0.18s, background 0.18s, color 0.18s;
-  user-select: none;
-  background: var(--bg);
-}
-.radio-item:hover, .check-item:hover {
-  border-color: rgba(42,82,232,0.3);
-  background: var(--accent-light);
-  color: var(--text);
-}
-.radio-item.selected, .check-item.selected {
-  border-color: rgba(42,82,232,0.4);
-  background: var(--accent-light);
-  color: var(--text);
-}
-.radio-item input, .check-item input {
-  width: 14px; height: 14px;
-  accent-color: var(--accent);
-  cursor: pointer; flex-shrink: 0;
-  border: none; background: none; padding: 0;
-}
-.radio-item input:focus, .check-item input:focus { box-shadow: none; border: none; }
+.opcoes{display:flex;flex-direction:column;gap:6px}
+.opcao{display:flex;align-items:flex-start;gap:10px;padding:10px 13px;border:1px solid var(--border-m);border-radius:var(--r);cursor:pointer;font-size:13px;color:var(--text2);transition:border-color .18s,background .18s,color .18s;user-select:none;background:var(--bg);line-height:1.5}
+.opcao:hover{border-color:rgba(42,82,232,0.3);background:var(--accent-l);color:var(--text)}
+.opcao.sel{border-color:rgba(42,82,232,0.4);background:var(--accent-l);color:var(--text)}
+.opcao input[type=radio],.opcao input[type=checkbox]{width:14px;height:14px;accent-color:var(--accent);cursor:pointer;flex-shrink:0;margin-top:2px;border:none;background:none;padding:0}
+.opcao input:focus{box-shadow:none;border:none}
 
-/* ── Error ── */
-.error-msg { font-size: 11px; color: var(--error); margin-top: 5px; display: none; }
-.error-msg.show { display: block; }
+/* ── Erros ── */
+.erro-msg{font-size:11px;color:var(--erro);margin-top:5px;display:none}
+.erro-msg.show{display:block}
 
 /* ── Nav ── */
-.nav-row {
-  display: flex; align-items: center;
-  justify-content: space-between;
-  margin-top: 28px;
-  padding-top: 22px;
-  border-top: 1px solid var(--border);
-  gap: 10px;
-}
-.btn-back {
-  display: flex; align-items: center; gap: 6px;
-  background: transparent;
-  border: 1px solid var(--border-md);
-  border-radius: var(--radius);
-  padding: 9px 16px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px; font-weight: 500;
-  color: var(--text2); cursor: pointer;
-  transition: border-color 0.18s, color 0.18s, background 0.18s;
-}
-.btn-back:hover { border-color: var(--border-strong); color: var(--text); background: var(--bg3); }
-.btn-back svg { width: 14px; height: 14px; }
-.btn-next {
-  display: flex; align-items: center; gap: 6px;
-  background: var(--accent);
-  border: none;
-  border-radius: var(--radius);
-  padding: 10px 22px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px; font-weight: 600;
-  color: #fff; cursor: pointer; margin-left: auto;
-  transition: background 0.18s, transform 0.15s, box-shadow 0.18s;
-  box-shadow: 0 2px 8px rgba(42,82,232,0.25);
-}
-.btn-next:hover { background: #1f3fc5; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(42,82,232,0.35); }
-.btn-next:active { transform: translateY(0); }
-.btn-next svg { width: 14px; height: 14px; }
-.step-counter { font-size: 12px; color: var(--text3); }
+.nav-row{display:flex;align-items:center;justify-content:space-between;margin-top:28px;padding-top:22px;border-top:1px solid var(--border);gap:10px}
+.btn-back{display:flex;align-items:center;gap:6px;background:transparent;border:1px solid var(--border-m);border-radius:var(--r);padding:9px 16px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:var(--text2);cursor:pointer;transition:all .18s}
+.btn-back:hover{border-color:var(--border-s);color:var(--text);background:var(--bg3)}
+.btn-back svg{width:14px;height:14px}
+.btn-next{display:flex;align-items:center;gap:6px;background:var(--accent);border:none;border-radius:var(--r);padding:10px 22px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:#fff;cursor:pointer;margin-left:auto;transition:background .18s,transform .15s,box-shadow .18s;box-shadow:0 2px 8px rgba(42,82,232,0.25)}
+.btn-next:hover{background:var(--accent-d);transform:translateY(-1px);box-shadow:0 4px 14px rgba(42,82,232,0.35)}
+.btn-next:active{transform:translateY(0)}
+.btn-next svg{width:14px;height:14px}
+.contador{font-size:12px;color:var(--text3)}
 
 /* ── Submit ── */
-.btn-submit {
-  width: 100%;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  background: var(--accent);
-  border: none; border-radius: var(--radius);
-  padding: 13px 24px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px; font-weight: 600;
-  color: #fff; cursor: pointer; margin-top: 20px;
-  transition: background 0.18s, transform 0.15s, box-shadow 0.18s;
-  box-shadow: 0 2px 10px rgba(42,82,232,0.3);
-}
-.btn-submit:hover { background: #1f3fc5; transform: translateY(-1px); box-shadow: 0 4px 18px rgba(42,82,232,0.4); }
-.btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
-.btn-submit svg { width: 16px; height: 16px; }
+.btn-submit{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--accent);border:none;border-radius:var(--r);padding:13px 24px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;color:#fff;cursor:pointer;margin-top:20px;transition:background .18s,transform .15s,box-shadow .18s;box-shadow:0 2px 10px rgba(42,82,232,0.3)}
+.btn-submit:hover{background:var(--accent-d);transform:translateY(-1px);box-shadow:0 4px 18px rgba(42,82,232,0.4)}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-submit svg{width:16px;height:16px}
 
 /* ── Info box ── */
-.info-box {
-  background: var(--accent-light);
-  border: 1px solid rgba(42,82,232,0.14);
-  border-radius: var(--radius);
-  padding: 14px 16px;
-  margin-top: 6px;
-}
-.info-box p { font-size: 12px; color: #2a52e8; line-height: 1.65; font-weight: 300; }
-.info-box strong { font-weight: 500; display: block; margin-bottom: 3px; color: #1f3fc5; }
+.info-box{background:var(--accent-l);border:1px solid rgba(42,82,232,0.14);border-radius:var(--r);padding:14px 16px;margin-top:6px}
+.info-box strong{display:block;font-size:12px;font-weight:500;color:var(--accent-d);margin-bottom:3px}
+.info-box p{font-size:12px;color:#2a52e8;line-height:1.65;font-weight:300}
 
-/* ── Setup notice ── */
-.setup-notice {
-  background: #fff8e6;
-  border: 1px solid rgba(202,138,4,0.25);
-  border-radius: var(--radius);
-  padding: 14px 16px;
-  margin-bottom: 24px;
-  display: flex; gap: 10px; align-items: flex-start;
-}
-.setup-notice svg { width: 16px; height: 16px; color: #92620a; flex-shrink: 0; margin-top: 1px; }
-.setup-notice-body strong { display: block; font-size: 12px; font-weight: 600; color: #7a4f08; margin-bottom: 3px; }
-.setup-notice-body p { font-size: 12px; color: #92620a; line-height: 1.6; }
-.setup-notice-body code { background: rgba(202,138,4,0.12); border-radius: 4px; padding: 1px 5px; font-size: 11px; font-family: monospace; word-break: break-all; }
-
-/* ── Success ── */
-.success-screen { text-align: center; padding: 24px 0 8px; }
-.success-ring {
-  width: 68px; height: 68px;
-  border-radius: 50%;
-  background: var(--success-bg);
-  border: 1px solid var(--success-border);
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 22px;
-  animation: scaleIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
-}
-.success-ring svg { width: 28px; height: 28px; color: var(--success); }
-@keyframes scaleIn { from{transform:scale(0.3);opacity:0} to{transform:scale(1);opacity:1} }
-.success-screen h2 {
-  font-family: 'Instrument Serif', serif;
-  font-size: 30px; font-weight: 400;
-  letter-spacing: -0.02em; margin-bottom: 10px;
-}
-.success-screen > p { font-size: 14px; color: var(--text2); line-height: 1.7; font-weight: 300; max-width: 380px; margin: 0 auto 20px; }
-.success-detail {
-  background: var(--success-bg);
-  border: 1px solid var(--success-border);
-  border-radius: var(--radius);
-  padding: 13px 16px;
-  font-size: 13px; color: var(--success); line-height: 1.6;
-}
+/* ── Sucesso ── */
+.sucesso{text-align:center;padding:24px 0 8px}
+.sucesso-ring{width:68px;height:68px;border-radius:50%;background:var(--ok-bg);border:1px solid var(--ok-border);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;animation:popIn .4s cubic-bezier(.34,1.56,.64,1) both}
+.sucesso-ring svg{width:28px;height:28px;color:var(--ok)}
+@keyframes popIn{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+.sucesso h2{font-family:'Instrument Serif',serif;font-size:30px;font-weight:400;letter-spacing:-.02em;margin-bottom:10px}
+.sucesso>p{font-size:14px;color:var(--text2);line-height:1.7;font-weight:300;max-width:380px;margin:0 auto 20px}
+.sucesso-box{background:var(--ok-bg);border:1px solid var(--ok-border);border-radius:var(--r);padding:13px 16px;font-size:13px;color:var(--ok);line-height:1.6}
 
 /* ── Spinner ── */
-.spinner {
-  width: 16px; height: 16px;
-  border: 2px solid rgba(255,255,255,0.35);
-  border-top-color: #fff;
-  border-radius: 50%;
-  animation: spin 0.65s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
+.spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:spin .65s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-/* ── Footer ── */
-.site-footer {
-  text-align: center;
-  margin-top: 36px;
-  font-size: 12px;
-  color: var(--text3);
-  display: flex; align-items: center; justify-content: center; gap: 6px;
-  position: relative; z-index: 1;
-}
-.site-footer svg { width: 12px; height: 12px; }
+/* ── Rodapé ── */
+.rodape{text-align:center;margin-top:36px;font-size:12px;color:var(--text3);display:flex;align-items:center;justify-content:center;gap:6px;position:relative;z-index:1}
+.rodape svg{width:12px;height:12px}
 
-.hidden { display: none !important; }
-
-@media (max-width: 600px) {
-  .form-card { padding: 22px 18px; }
-  .container { padding: 28px 16px 60px; }
-}
+.hidden{display:none!important}
+@media(max-width:600px){.card{padding:22px 18px}.container{padding:28px 16px 60px}}
 </style>
 </head>
 <body>
-
 <div class="container">
 
   <!-- Header -->
-  <div class="site-header">
+  <div class="header">
     <div class="logo-row">
       <div class="logo-mark">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
       </div>
       <span class="logo-name">Agência</span>
       <span class="logo-sep">/</span>
       <span class="logo-sub">Tráfego Pago</span>
     </div>
     <h1>Vamos entender<br>o seu <em>negócio</em></h1>
-    <p>Preencha com calma — leva cerca de 8 minutos. Suas respostas guiam toda a estratégia de tráfego pago.</p>
+    <p>Preencha com calma — leva cerca de 8 minutos. Se não souber alguma resposta, escreva o que souber ou pule. Suas respostas guiam toda a estratégia de campanha.</p>
   </div>
 
-
-  <!-- Progress -->
+  <!-- Progresso -->
   <div class="progress-wrap">
     <div class="progress-meta">
       <span class="progress-label" id="prog-label">Etapa 1 de 6</span>
       <span class="progress-pct" id="prog-pct">16%</span>
     </div>
-    <div class="progress-track">
-      <div class="progress-fill" id="prog-fill" style="width:16%"></div>
-    </div>
+    <div class="progress-track"><div class="progress-fill" id="prog-fill" style="width:16%"></div></div>
     <div class="step-dots" id="step-dots"></div>
   </div>
 
   <!-- Card -->
-  <div class="form-card" id="form-card">
+  <div class="card">
 
-    <!-- Step 1: Negócio -->
+    <!-- ═══════════════════════ STEP 1 ═══════════════════════ -->
     <div class="step-panel" id="step1">
       <div class="step-header">
         <div class="step-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
         </div>
-        <div class="step-info">
-          <h2>Dados do negócio</h2>
-          <p>Informações básicas sobre a empresa e seu mercado</p>
-        </div>
+        <div class="step-info"><h2>Dados do negócio</h2><p>Informações básicas sobre a empresa e seu mercado</p></div>
       </div>
 
-      <div class="field">
-        <label class="field-label">Nome da empresa <span class="req">*</span></label>
-        <input type="text" id="f_nome" placeholder="Ex: Clínica Sorrir Nova Iguaçu">
-        <span class="error-msg" id="err_nome">Preencha o nome da empresa.</span>
+      <div class="campo">
+        <label class="campo-label">Nome da empresa <span class="req">*</span></label>
+        <input type="text" id="f_nome" placeholder="Ex: Clínica Sorrir">
+        <span class="erro-msg" id="err_nome">Preencha o nome da empresa.</span>
       </div>
 
-      <div class="cols2">
-        <div class="field">
-          <label class="field-label">Segmento <span class="req">*</span></label>
-          <select id="f_segmento">
-            <option value="">Selecione...</option>
-            <option>Saúde e estética</option>
-            <option>Odontologia</option>
-            <option>Educação / cursos</option>
-            <option>Alimentação / delivery</option>
-            <option>Serviços automotivos</option>
-            <option>Reforma e construção</option>
-            <option>Comércio varejista</option>
-            <option>Serviços domésticos</option>
-            <option>Advocacia / contabilidade</option>
-            <option>Imóveis</option>
-            <option>Moda e vestuário</option>
-            <option>Pet shop / veterinária</option>
-            <option>Outro</option>
-          </select>
-          <span class="error-msg" id="err_seg">Selecione o segmento.</span>
+      <div class="campo">
+        <label class="campo-label">Segmento / nicho <span class="req">*</span></label>
+        <select id="f_segmento" onchange="outro(this,'outro_segmento')">
+          <option value="">Selecione...</option>
+          <option>Saúde e estética</option>
+          <option>Odontologia</option>
+          <option>Educação / cursos</option>
+          <option>Alimentação / delivery</option>
+          <option>Serviços automotivos</option>
+          <option>Reforma e construção</option>
+          <option>Comércio varejista</option>
+          <option>Serviços domésticos</option>
+          <option>Advocacia / contabilidade</option>
+          <option>Imóveis</option>
+          <option>Moda e vestuário</option>
+          <option>Pet shop / veterinária</option>
+          <option>Outro</option>
+        </select>
+        <div class="outro-campo" id="outro_segmento">
+          <input type="text" id="f_segmento_outro" placeholder="Qual é o segmento?">
         </div>
-        <div class="field">
-          <label class="field-label">Município <span class="req">*</span></label>
-          <select id="f_cidade">
-            <option value="">Selecione...</option>
-            <option>Nova Iguaçu</option>
-            <option>Duque de Caxias</option>
-            <option>São João de Meriti</option>
-            <option>Belford Roxo</option>
-            <option>Nilópolis</option>
-            <option>Mesquita</option>
-            <option>Japeri</option>
-            <option>Queimados</option>
-            <option>Seropédica</option>
-            <option>Itaguaí</option>
-            <option>Outro</option>
-          </select>
-          <span class="error-msg" id="err_cid">Selecione o município.</span>
-        </div>
+        <span class="erro-msg" id="err_seg">Selecione o segmento.</span>
       </div>
 
-      <div class="field">
-        <label class="field-label">Bairros / regiões de atuação</label>
-        <input type="text" id="f_bairros" placeholder="Ex: Centro, Austin, Km 32, Saracuruna...">
-      </div>
+      <div class="secao">Localização</div>
 
       <div class="cols2">
-        <div class="field">
-          <label class="field-label">Tempo de mercado</label>
+        <div class="campo">
+          <label class="campo-label">Estado (UF) <span class="req">*</span></label>
+          <select id="f_estado" onchange="carregarCidades();outro(this,'outro_estado')">
+            <option value="">Selecione...</option>
+            <option value="AC">Acre</option><option value="AL">Alagoas</option><option value="AP">Amapá</option>
+            <option value="AM">Amazonas</option><option value="BA">Bahia</option><option value="CE">Ceará</option>
+            <option value="DF">Distrito Federal</option><option value="ES">Espírito Santo</option>
+            <option value="GO">Goiás</option><option value="MA">Maranhão</option><option value="MT">Mato Grosso</option>
+            <option value="MS">Mato Grosso do Sul</option><option value="MG">Minas Gerais</option>
+            <option value="PA">Pará</option><option value="PB">Paraíba</option><option value="PR">Paraná</option>
+            <option value="PE">Pernambuco</option><option value="PI">Piauí</option>
+            <option value="RJ">Rio de Janeiro</option><option value="RN">Rio Grande do Norte</option>
+            <option value="RS">Rio Grande do Sul</option><option value="RO">Rondônia</option>
+            <option value="RR">Roraima</option><option value="SC">Santa Catarina</option>
+            <option value="SP">São Paulo</option><option value="SE">Sergipe</option><option value="TO">Tocantins</option>
+          </select>
+          <span class="erro-msg" id="err_estado">Selecione o estado.</span>
+        </div>
+        <div class="campo">
+          <label class="campo-label">Município / cidade <span class="req">*</span></label>
+          <select id="f_cidade" onchange="outro(this,'outro_cidade')">
+            <option value="">Selecione o estado primeiro</option>
+          </select>
+          <div class="outro-campo" id="outro_cidade">
+            <input type="text" id="f_cidade_outro" placeholder="Qual é o município?">
+          </div>
+          <span class="erro-msg" id="err_cid">Selecione o município.</span>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label class="campo-label">Região / bairro(s) de atuação</label>
+        <span class="campo-dica">Se atende em toda a cidade, escreva "cidade toda"</span>
+        <input type="text" id="f_bairros" placeholder="Ex: Centro, Vila da Prata, Km 32, Zona Norte... ou cidade toda">
+      </div>
+
+      <div class="secao">Dados comerciais</div>
+
+      <div class="cols2">
+        <div class="campo">
+          <label class="campo-label">Tempo de mercado</label>
           <select id="f_tempo">
             <option value="">Selecione...</option>
-            <option>Menos de 1 ano</option>
-            <option>1 a 3 anos</option>
-            <option>3 a 5 anos</option>
-            <option>Mais de 5 anos</option>
+            <option>Menos de 1 ano</option><option>1 a 3 anos</option>
+            <option>3 a 5 anos</option><option>Mais de 5 anos</option>
           </select>
         </div>
-        <div class="field">
-          <label class="field-label">Ticket médio (R$) <span class="req">*</span></label>
-          <input type="number" id="f_ticket" placeholder="Ex: 350" min="0">
-          <span class="error-msg" id="err_tick">Informe o ticket médio.</span>
+        <div class="campo">
+          <label class="campo-label">Ticket médio (R$) <span class="req">*</span></label>
+          <input type="text" id="f_ticket" placeholder="Ex: 350 ou não sei ao certo">
+          <span class="erro-msg" id="err_tick">Informe o ticket (pode ser aproximado).</span>
         </div>
       </div>
 
-      <div class="field">
-        <label class="field-label">Principal concorrente local</label>
-        <input type="text" id="f_concorrente" placeholder="Nome ou 'não identificado'">
+      <div class="campo">
+        <label class="campo-label">Principal concorrente local</label>
+        <input type="text" id="f_concorrente" placeholder="Nome do concorrente ou 'não identificado'">
       </div>
 
-      <div class="field">
-        <label class="field-label">
-          Diferencial competitivo
-          <span class="alert-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Importante
-          </span>
+      <div class="campo">
+        <label class="campo-label">Diferencial competitivo
+          <span class="badge-imp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Importante</span>
         </label>
-        <span class="field-hint">Por que o cliente escolhe vocês e não o concorrente?</span>
-        <textarea id="f_diferencial" placeholder="Ex: Atendimento no mesmo dia, parcelamos em 12x, único especialista em..."></textarea>
+        <span class="campo-dica">Por que o cliente escolhe vocês? Se não souber, descreva o que o negócio faz de melhor.</span>
+        <textarea id="f_diferencial" placeholder="Ex: Atendemos no mesmo dia, parcelamos em 12x, melhor preço da região... ou descreva como quiser"></textarea>
       </div>
     </div>
 
-    <!-- Step 2: Público -->
+    <!-- ═══════════════════════ STEP 2 ═══════════════════════ -->
     <div class="step-panel hidden" id="step2">
       <div class="step-header">
         <div class="step-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
-        <div class="step-info">
-          <h2>Público-alvo</h2>
-          <p>Quem é o cliente ideal deste negócio</p>
-        </div>
+        <div class="step-info"><h2>Público-alvo</h2><p>Quem compra de vocês — pode descrever livremente</p></div>
+      </div>
+
+      <div class="campo">
+        <label class="campo-label">Descreva o cliente ideal com suas palavras</label>
+        <span class="campo-dica">Idade, o que faz, onde mora, o que quer. Pode ser bem informal.</span>
+        <textarea id="f_cliente_livre" placeholder="Ex: Mulher de 30 a 45 anos, mora na Baixada, tem filho, trabalha e quer praticidade. Ou: homem que trabalha de carteira assinada, tem carro, procura serviço de confiança..."></textarea>
       </div>
 
       <div class="cols2">
-        <div class="field">
-          <label class="field-label">Faixa etária principal</label>
+        <div class="campo">
+          <label class="campo-label">Faixa etária principal</label>
           <select id="f_idade">
             <option value="">Selecione...</option>
-            <option>18 a 24 anos</option>
-            <option>25 a 34 anos</option>
-            <option>35 a 44 anos</option>
-            <option>45 a 54 anos</option>
-            <option>55+ anos</option>
-            <option>Todas as idades</option>
+            <option>18 a 24 anos</option><option>25 a 34 anos</option><option>35 a 44 anos</option>
+            <option>45 a 54 anos</option><option>55+ anos</option><option>Todas as idades</option>
+            <option>Não sei ao certo</option>
           </select>
         </div>
-        <div class="field">
-          <label class="field-label">Gênero predominante</label>
+        <div class="campo">
+          <label class="campo-label">Gênero predominante</label>
           <select id="f_genero">
             <option value="">Selecione...</option>
-            <option>Majoritariamente masculino</option>
-            <option>Majoritariamente feminino</option>
-            <option>Equilibrado (50/50)</option>
+            <option>Majoritariamente masculino</option><option>Majoritariamente feminino</option>
+            <option>Equilibrado (50/50)</option><option>Não sei ao certo</option>
           </select>
         </div>
       </div>
 
-      <div class="field">
-        <label class="field-label">Renda estimada do cliente</label>
-        <div class="radio-group">
-          <label class="radio-item"><input type="radio" name="renda" value="Até R$2.000/mês (D/E)"> Até R$2.000/mês — classes D/E</label>
-          <label class="radio-item"><input type="radio" name="renda" value="R$2.000–5.000/mês (C)"> R$2.000 a R$5.000/mês — classe C</label>
-          <label class="radio-item"><input type="radio" name="renda" value="R$5.000–10.000/mês (B)"> R$5.000 a R$10.000/mês — classe B</label>
-          <label class="radio-item"><input type="radio" name="renda" value="Acima de R$10.000/mês (A)"> Acima de R$10.000/mês — classe A</label>
+      <div class="campo">
+        <label class="campo-label">Renda estimada do cliente</label>
+        <div class="opcoes">
+          <label class="opcao"><input type="radio" name="renda" value="Até R$2.000/mês"> Até R$2.000/mês</label>
+          <label class="opcao"><input type="radio" name="renda" value="R$2.000 a R$5.000/mês"> R$2.000 a R$5.000/mês</label>
+          <label class="opcao"><input type="radio" name="renda" value="R$5.000 a R$10.000/mês"> R$5.000 a R$10.000/mês</label>
+          <label class="opcao"><input type="radio" name="renda" value="Acima de R$10.000/mês"> Acima de R$10.000/mês</label>
+          <label class="opcao"><input type="radio" name="renda" value="Não sei ao certo"> Não sei ao certo</label>
         </div>
       </div>
 
-      <div class="field">
-        <label class="field-label">Como o cliente chega até vocês hoje?</label>
-        <span class="field-hint">Selecione todas que se aplicam.</span>
-        <div class="check-group" id="chk_origem">
-          <label class="check-item"><input type="checkbox" value="Indicação"> Indicação de amigos ou familiares</label>
-          <label class="check-item"><input type="checkbox" value="Google"> Pesquisa no Google</label>
-          <label class="check-item"><input type="checkbox" value="Instagram/Facebook"> Instagram ou Facebook</label>
-          <label class="check-item"><input type="checkbox" value="Loja física"> Fluxo de rua / loja física</label>
-          <label class="check-item"><input type="checkbox" value="WhatsApp direto"> WhatsApp direto</label>
-          <label class="check-item"><input type="checkbox" value="Google Meu Negócio"> Google Meu Negócio</label>
+      <div class="campo">
+        <label class="campo-label">Como o cliente chega até vocês hoje?</label>
+        <span class="campo-dica">Marque todas que se aplicam</span>
+        <div class="opcoes" id="chk_origem">
+          <label class="opcao"><input type="checkbox" value="Indicação de amigos ou familiares"> Indicação de amigos ou familiares</label>
+          <label class="opcao"><input type="checkbox" value="Pesquisa no Google"> Pesquisa no Google</label>
+          <label class="opcao"><input type="checkbox" value="Instagram ou Facebook"> Instagram ou Facebook</label>
+          <label class="opcao"><input type="checkbox" value="TikTok"> TikTok</label>
+          <label class="opcao"><input type="checkbox" value="Fluxo de rua / loja física"> Fluxo de rua / loja física</label>
+          <label class="opcao"><input type="checkbox" value="WhatsApp direto"> WhatsApp direto</label>
+          <label class="opcao"><input type="checkbox" value="Google Meu Negócio"> Google Meu Negócio</label>
+          <label class="opcao"><input type="checkbox" value="Não sei ao certo"> Não sei ao certo</label>
         </div>
       </div>
 
-      <div class="field">
-        <label class="field-label">Principais dores e objeções do cliente</label>
-        <span class="field-hint">O que impede o cliente de fechar? Quais dúvidas ele tem antes de comprar?</span>
-        <textarea id="f_dores" placeholder="Ex: Preço, desconfiança, prefere ver pessoalmente, não sabe se resolve o problema..."></textarea>
+      <div class="campo">
+        <label class="campo-label">O que impede o cliente de fechar?</label>
+        <span class="campo-dica">Objeções, dúvidas, motivos de perda — escreva como quiser</span>
+        <textarea id="f_dores" placeholder="Ex: Preço alto, desconfiança, prefere ver pessoalmente, concorrente mais barato... ou 'nunca perguntei'"></textarea>
       </div>
     </div>
 
-    <!-- Step 3: Digital -->
+    <!-- ═══════════════════════ STEP 3 ═══════════════════════ -->
     <div class="step-panel hidden" id="step3">
       <div class="step-header">
         <div class="step-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         </div>
-        <div class="step-info">
-          <h2>Estrutura digital</h2>
-          <p>Presença online e ferramentas atuais</p>
+        <div class="step-info"><h2>Presença digital</h2><p>Canais e ferramentas atuais do negócio</p></div>
+      </div>
+
+      <div class="campo">
+        <label class="campo-label">Tem site ou landing page?</label>
+        <div class="opcoes">
+          <label class="opcao"><input type="radio" name="site" value="Sim, com domínio próprio"> Sim, com domínio próprio</label>
+          <label class="opcao"><input type="radio" name="site" value="Só link de bio / Linktree"> Só link de bio / Linktree</label>
+          <label class="opcao"><input type="radio" name="site" value="Não tem site"> Não tem site</label>
+          <label class="opcao"><input type="radio" name="site" value="Não sei o que é isso"> Não sei o que é isso</label>
         </div>
       </div>
 
-      <div class="field">
-        <label class="field-label">Site ou landing page</label>
-        <div class="radio-group">
-          <label class="radio-item"><input type="radio" name="site" value="Sim, domínio próprio"> Sim, com domínio próprio</label>
-          <label class="radio-item"><input type="radio" name="site" value="Sim, link de bio/Linktree"> Sim, apenas link de bio / Linktree</label>
-          <label class="radio-item"><input type="radio" name="site" value="Não tem site"> Não tem site</label>
-        </div>
+      <div class="campo">
+        <label class="campo-label">URL do site (se tiver)</label>
+        <input type="text" id="f_site_url" placeholder="Ex: www.minhaempresa.com.br — ou deixe em branco">
       </div>
 
-      <div class="field">
-        <label class="field-label">URL do site (se tiver)</label>
-        <input type="text" id="f_site_url" placeholder="https://www.seusite.com.br">
-      </div>
-
-      <div class="field">
-        <label class="field-label">Redes sociais ativas</label>
-        <div class="check-group" id="chk_redes">
-          <label class="check-item"><input type="checkbox" value="Instagram"> Instagram</label>
-          <label class="check-item"><input type="checkbox" value="Facebook"> Facebook</label>
-          <label class="check-item"><input type="checkbox" value="TikTok"> TikTok</label>
-          <label class="check-item"><input type="checkbox" value="YouTube"> YouTube</label>
-          <label class="check-item"><input type="checkbox" value="WhatsApp Business"> WhatsApp Business</label>
-          <label class="check-item"><input type="checkbox" value="Nenhuma"> Nenhuma ativa</label>
+      <div class="campo">
+        <label class="campo-label">Redes sociais ativas</label>
+        <span class="campo-dica">Marque as que publica com regularidade</span>
+        <div class="opcoes" id="chk_redes">
+          <label class="opcao"><input type="checkbox" value="Instagram"> Instagram</label>
+          <label class="opcao"><input type="checkbox" value="Facebook"> Facebook</label>
+          <label class="opcao"><input type="checkbox" value="TikTok"> TikTok</label>
+          <label class="opcao"><input type="checkbox" value="YouTube"> YouTube</label>
+          <label class="opcao"><input type="checkbox" value="WhatsApp Business"> WhatsApp Business</label>
+          <label class="opcao"><input type="checkbox" value="Não tenho / não posto"> Não tenho / não posto</label>
         </div>
       </div>
 
       <div class="cols2">
-        <div class="field">
-          <label class="field-label">Google Meu Negócio</label>
+        <div class="campo">
+          <label class="campo-label">Google Meu Negócio</label>
           <select id="f_gmn">
             <option value="">Selecione...</option>
-            <option>Ativo e com avaliações</option>
-            <option>Ativo sem atualizações</option>
-            <option>Não tem</option>
-            <option>Não sei</option>
+            <option>Ativo e com avaliações</option><option>Ativo sem atualizações</option>
+            <option>Não tenho</option><option>Não sei o que é isso</option>
           </select>
         </div>
-        <div class="field">
-          <label class="field-label">Resposta no WhatsApp</label>
+        <div class="campo">
+          <label class="campo-label">Tempo de resposta no WhatsApp</label>
           <select id="f_whats">
             <option value="">Selecione...</option>
-            <option>Menos de 5 minutos</option>
-            <option>5 a 30 minutos</option>
-            <option>30 min a 2 horas</option>
-            <option>Mais de 2 horas</option>
-            <option>Não usa WhatsApp</option>
+            <option>Menos de 5 minutos</option><option>5 a 30 minutos</option>
+            <option>30 minutos a 2 horas</option><option>Mais de 2 horas</option>
+            <option>Não uso WhatsApp para vender</option>
           </select>
         </div>
       </div>
 
-      <div class="field">
-        <label class="field-label">Pixel Meta / Google Tag instalado?</label>
-        <div class="radio-group">
-          <label class="radio-item"><input type="radio" name="pixel" value="Sim, ambos"> Sim, ambos instalados</label>
-          <label class="radio-item"><input type="radio" name="pixel" value="Apenas Pixel Meta"> Apenas Pixel Meta</label>
-          <label class="radio-item"><input type="radio" name="pixel" value="Apenas Google Tag"> Apenas Google Tag</label>
-          <label class="radio-item"><input type="radio" name="pixel" value="Nenhum"> Nenhum instalado</label>
-          <label class="radio-item"><input type="radio" name="pixel" value="Não sei"> Não sei</label>
+      <div class="campo">
+        <label class="campo-label">Pixel do Facebook ou Google Tag instalado?</label>
+        <div class="opcoes">
+          <label class="opcao"><input type="radio" name="pixel" value="Sim, os dois"> Sim, os dois</label>
+          <label class="opcao"><input type="radio" name="pixel" value="Só o Pixel do Facebook"> Só o Pixel do Facebook</label>
+          <label class="opcao"><input type="radio" name="pixel" value="Só o Google Tag"> Só o Google Tag</label>
+          <label class="opcao"><input type="radio" name="pixel" value="Nenhum"> Nenhum</label>
+          <label class="opcao"><input type="radio" name="pixel" value="Não sei o que é isso"> Não sei o que é isso</label>
         </div>
       </div>
     </div>
 
-    <!-- Step 4: Histórico -->
+    <!-- ═══════════════════════ STEP 4 ═══════════════════════ -->
     <div class="step-panel hidden" id="step4">
       <div class="step-header">
         <div class="step-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
         </div>
-        <div class="step-info">
-          <h2>Histórico de campanhas</h2>
-          <p>O que já foi feito em mídia paga</p>
-        </div>
+        <div class="step-info"><h2>Histórico de campanhas</h2><p>O que já foi feito em anúncios pagos</p></div>
       </div>
 
-      <div class="field">
-        <label class="field-label">Já anunciou antes? <span class="req">*</span></label>
-        <div class="radio-group">
-          <label class="radio-item"><input type="radio" name="historico" value="Nunca anunciou" onclick="toggleExtra(false)"> Nunca anunciou</label>
-          <label class="radio-item"><input type="radio" name="historico" value="Já anunciou no passado" onclick="toggleExtra(true)"> Já anunciou no passado</label>
-          <label class="radio-item"><input type="radio" name="historico" value="Anuncia atualmente" onclick="toggleExtra(true)"> Anuncia atualmente</label>
+      <div class="campo">
+        <label class="campo-label">Já anunciou antes? <span class="req">*</span></label>
+        <div class="opcoes">
+          <label class="opcao"><input type="radio" name="historico" value="Nunca anunciei" onclick="toggleExtra(false)"> Nunca anunciei</label>
+          <label class="opcao"><input type="radio" name="historico" value="Já anunciei no passado" onclick="toggleExtra(true)"> Já anunciei no passado</label>
+          <label class="opcao"><input type="radio" name="historico" value="Anuncio atualmente" onclick="toggleExtra(true)"> Anuncio atualmente</label>
         </div>
-        <span class="error-msg" id="err_hist">Selecione uma opção.</span>
+        <span class="erro-msg" id="err_hist">Selecione uma opção.</span>
       </div>
 
       <div id="extra-historico" class="hidden">
-        <div class="field">
-          <label class="field-label">Plataforma(s) utilizada(s)</label>
-          <div class="check-group" id="chk_plat">
-            <label class="check-item"><input type="checkbox" value="Meta Ads (Facebook/Instagram)"> Meta Ads — Facebook e Instagram</label>
-            <label class="check-item"><input type="checkbox" value="Google Ads"> Google Ads</label>
-            <label class="check-item"><input type="checkbox" value="TikTok Ads"> TikTok Ads</label>
-            <label class="check-item"><input type="checkbox" value="Impulsionamento direto"> Impulsionamento direto (boost)</label>
+        <div class="campo">
+          <label class="campo-label">Onde anunciou?</label>
+          <div class="opcoes" id="chk_plat">
+            <label class="opcao"><input type="checkbox" value="Meta Ads (Facebook/Instagram)"> Meta Ads — Facebook e Instagram</label>
+            <label class="opcao"><input type="checkbox" value="Google Ads"> Google Ads</label>
+            <label class="opcao"><input type="checkbox" value="TikTok Ads"> TikTok Ads</label>
+            <label class="opcao"><input type="checkbox" value="Impulsionei pelo app"> Impulsionei diretamente pelo app</label>
+            <label class="opcao"><input type="checkbox" value="Não lembro"> Não lembro qual plataforma</label>
           </div>
         </div>
-
-        <div class="field">
-          <label class="field-label">Investimento mensal médio</label>
+        <div class="campo">
+          <label class="campo-label">Quanto investia por mês?</label>
           <select id="f_invest_ant">
             <option value="">Selecione...</option>
-            <option>Menos de R$500/mês</option>
-            <option>R$500 a R$1.500/mês</option>
-            <option>R$1.500 a R$3.000/mês</option>
-            <option>R$3.000 a R$5.000/mês</option>
-            <option>Mais de R$5.000/mês</option>
+            <option>Menos de R$500/mês</option><option>R$500 a R$1.500/mês</option>
+            <option>R$1.500 a R$3.000/mês</option><option>R$3.000 a R$5.000/mês</option>
+            <option>Mais de R$5.000/mês</option><option>Não sei / não lembro</option>
           </select>
         </div>
-
-        <div class="field">
-          <label class="field-label">Resultado obtido / motivo de parada</label>
-          <textarea id="f_result_ant" placeholder="Ex: Gerava leads mas não convertia, custo muito alto, sem acompanhamento..."></textarea>
+        <div class="campo">
+          <label class="campo-label">Como foram os resultados? Por que parou?</label>
+          <span class="campo-dica">Qualquer detalhe ajuda — pode ser informal</span>
+          <textarea id="f_result_ant" placeholder="Ex: Gerava mensagens mas não vendia, custo muito alto, agência sumiu, não sabia se estava funcionando..."></textarea>
         </div>
       </div>
 
-      <div class="field">
-        <label class="field-label">Base de clientes para remarketing</label>
-        <div class="radio-group">
-          <label class="radio-item"><input type="radio" name="base" value="Sim, 500+ contatos"> Sim, lista com 500 ou mais contatos</label>
-          <label class="radio-item"><input type="radio" name="base" value="Sim, menos de 500"> Sim, mas menos de 500 contatos</label>
-          <label class="radio-item"><input type="radio" name="base" value="Não tem base"> Não tem base organizada</label>
+      <div class="campo">
+        <label class="campo-label">Tem lista de clientes para remarketing?</label>
+        <div class="opcoes">
+          <label class="opcao"><input type="radio" name="base" value="Sim, 500 ou mais contatos"> Sim, 500 ou mais contatos (WhatsApp ou e-mail)</label>
+          <label class="opcao"><input type="radio" name="base" value="Sim, menos de 500"> Sim, mas menos de 500 contatos</label>
+          <label class="opcao"><input type="radio" name="base" value="Não tenho lista organizada"> Não tenho lista organizada</label>
+          <label class="opcao"><input type="radio" name="base" value="Não sei o que é remarketing"> Não sei o que é remarketing</label>
         </div>
       </div>
     </div>
 
-    <!-- Step 5: Orçamento -->
+    <!-- ═══════════════════════ STEP 5 ═══════════════════════ -->
     <div class="step-panel hidden" id="step5">
       <div class="step-header">
         <div class="step-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
-        <div class="step-info">
-          <h2>Orçamento e metas</h2>
-          <p>Investimento disponível e objetivos da campanha</p>
-        </div>
+        <div class="step-info"><h2>Orçamento e metas</h2><p>Quanto tem disponível e o que quer alcançar</p></div>
       </div>
 
-      <div class="field">
-        <label class="field-label">Budget mensal para mídia (somente anúncios) <span class="req">*</span></label>
-        <span class="field-hint">Valor separado do custo de gestão da agência.</span>
-        <div class="radio-group">
-          <label class="radio-item"><input type="radio" name="budget" value="Até R$900/mês"> Até R$900/mês</label>
-          <label class="radio-item"><input type="radio" name="budget" value="R$900 a R$2.000/mês"> R$900 a R$2.000/mês</label>
-          <label class="radio-item"><input type="radio" name="budget" value="R$2.000 a R$4.000/mês"> R$2.000 a R$4.000/mês</label>
-          <label class="radio-item"><input type="radio" name="budget" value="R$4.000 a R$8.000/mês"> R$4.000 a R$8.000/mês</label>
-          <label class="radio-item"><input type="radio" name="budget" value="Acima de R$8.000/mês"> Acima de R$8.000/mês</label>
+      <div class="campo">
+        <label class="campo-label">Quanto pode investir por mês em anúncios? <span class="req">*</span></label>
+        <span class="campo-dica">Somente o valor dos anúncios — separado da taxa da agência</span>
+        <div class="opcoes">
+          <label class="opcao"><input type="radio" name="budget" value="Até R$900/mês"> Até R$900/mês</label>
+          <label class="opcao"><input type="radio" name="budget" value="R$900 a R$2.000/mês"> R$900 a R$2.000/mês</label>
+          <label class="opcao"><input type="radio" name="budget" value="R$2.000 a R$4.000/mês"> R$2.000 a R$4.000/mês</label>
+          <label class="opcao"><input type="radio" name="budget" value="R$4.000 a R$8.000/mês"> R$4.000 a R$8.000/mês</label>
+          <label class="opcao"><input type="radio" name="budget" value="Acima de R$8.000/mês"> Acima de R$8.000/mês</label>
+          <label class="opcao"><input type="radio" name="budget" value="Ainda não decidi"> Ainda não decidi — quero uma sugestão</label>
         </div>
-        <span class="error-msg" id="err_budget">Selecione uma faixa de budget.</span>
+        <span class="erro-msg" id="err_budget">Selecione uma opção de investimento.</span>
       </div>
 
-      <div class="field">
-        <label class="field-label">Objetivo principal da campanha <span class="req">*</span></label>
-        <div class="radio-group">
-          <label class="radio-item"><input type="radio" name="objetivo" value="Gerar leads pelo WhatsApp"> Gerar leads pelo WhatsApp</label>
-          <label class="radio-item"><input type="radio" name="objetivo" value="Gerar leads por formulário"> Gerar leads por formulário</label>
-          <label class="radio-item"><input type="radio" name="objetivo" value="Vendas diretas (e-commerce)"> Vendas diretas (e-commerce)</label>
-          <label class="radio-item"><input type="radio" name="objetivo" value="Tráfego para o site"> Aumentar tráfego no site</label>
-          <label class="radio-item"><input type="radio" name="objetivo" value="Reconhecimento de marca local"> Reconhecimento de marca local</label>
+      <div class="campo">
+        <label class="campo-label">O que quer que a campanha gere? <span class="req">*</span></label>
+        <div class="opcoes">
+          <label class="opcao"><input type="radio" name="objetivo" value="Pessoas entrando no WhatsApp"> Pessoas entrando no meu WhatsApp</label>
+          <label class="opcao"><input type="radio" name="objetivo" value="Formulário preenchido com contato"> Formulário preenchido com contato</label>
+          <label class="opcao"><input type="radio" name="objetivo" value="Vendas diretas pelo site"> Vendas diretas pelo site</label>
+          <label class="opcao"><input type="radio" name="objetivo" value="Mais reconhecimento na região"> Mais pessoas me conhecendo na região</label>
+          <label class="opcao"><input type="radio" name="objetivo" value="Não sei — quero sugestão"> Não sei — quero uma sugestão</label>
         </div>
-        <span class="error-msg" id="err_obj">Selecione o objetivo.</span>
+        <span class="erro-msg" id="err_obj">Selecione o objetivo.</span>
+      </div>
+
+      <div class="campo">
+        <label class="campo-label">Qual a meta mensal que quer bater?</label>
+        <span class="campo-dica">Em leads, vendas ou faturamento — escreva como quiser</span>
+        <textarea id="f_meta_livre" placeholder="Ex: Quero 50 clientes novos por mês, fechar 20 vendas, ou faturar R$30.000..."></textarea>
       </div>
 
       <div class="cols2">
-        <div class="field">
-          <label class="field-label">Meta de leads por mês</label>
-          <input type="number" id="f_meta_leads" placeholder="Ex: 80" min="0">
+        <div class="campo">
+          <label class="campo-label">Meta de leads por mês</label>
+          <input type="text" id="f_meta_leads" placeholder="Ex: 80 ou não sei">
         </div>
-        <div class="field">
-          <label class="field-label">Meta de vendas por mês</label>
-          <input type="number" id="f_meta_vendas" placeholder="Ex: 20" min="0">
+        <div class="campo">
+          <label class="campo-label">Meta de vendas por mês</label>
+          <input type="text" id="f_meta_vendas" placeholder="Ex: 20 ou não sei">
         </div>
       </div>
 
-      <div class="field">
-        <label class="field-label">CPL máximo aceito (R$)</label>
-        <span class="field-hint">Quanto pode custar no máximo cada lead gerado?</span>
-        <input type="number" id="f_cpl" placeholder="Ex: 30" min="0">
-      </div>
-
-      <div class="field">
-        <label class="field-label">Sazonalidade</label>
-        <textarea id="f_sazon" placeholder="Ex: Dezembro é o mês mais forte, janeiro cai 40%..."></textarea>
+      <div class="campo">
+        <label class="campo-label">O negócio tem sazonalidade?</label>
+        <span class="campo-dica">Épocas mais fortes ou mais fracas no ano</span>
+        <textarea id="f_sazon" placeholder="Ex: Dezembro é o mais forte, janeiro cai bastante... ou 'não vejo diferença ao longo do ano'"></textarea>
       </div>
     </div>
 
-    <!-- Step 6: Operação -->
+    <!-- ═══════════════════════ STEP 6 ═══════════════════════ -->
     <div class="step-panel hidden" id="step6">
       <div class="step-header">
         <div class="step-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M2 12h2M20 12h2M19.07 19.07l-1.41-1.41M4.93 19.07l1.41-1.41M12 2v2M12 20v2"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
         </div>
-        <div class="step-info">
-          <h2>Capacidade operacional</h2>
-          <p>Estrutura de atendimento e vendas</p>
-        </div>
+        <div class="step-info"><h2>Atendimento e contato</h2><p>Como o negócio funciona por dentro</p></div>
       </div>
 
       <div class="cols2">
-        <div class="field">
-          <label class="field-label">Time de atendimento</label>
+        <div class="campo">
+          <label class="campo-label">Quantas pessoas fazem vendas?</label>
           <select id="f_time">
             <option value="">Selecione...</option>
-            <option>Só o dono (1 pessoa)</option>
-            <option>2 a 3 pessoas</option>
-            <option>4 a 6 pessoas</option>
-            <option>Mais de 6 pessoas</option>
+            <option>Só eu (dono)</option><option>2 a 3 pessoas</option>
+            <option>4 a 6 pessoas</option><option>Mais de 6 pessoas</option>
           </select>
         </div>
-        <div class="field">
-          <label class="field-label">Capacidade de leads/dia</label>
-          <input type="number" id="f_capacidade" placeholder="Ex: 15" min="0">
+        <div class="campo">
+          <label class="campo-label">Quantos leads aguenta por dia?</label>
+          <input type="text" id="f_capacidade" placeholder="Ex: 15 ou não sei">
         </div>
       </div>
 
-      <div class="field">
-        <label class="field-label">Processo de vendas definido?</label>
-        <div class="radio-group">
-          <label class="radio-item"><input type="radio" name="script" value="Sim, documentado"> Sim, script completo documentado</label>
-          <label class="radio-item"><input type="radio" name="script" value="Sim, informal"> Sim, informal (cada um faz do seu jeito)</label>
-          <label class="radio-item"><input type="radio" name="script" value="Não tem"> Não tem processo definido</label>
+      <div class="campo">
+        <label class="campo-label">Como é o processo de venda hoje?</label>
+        <span class="campo-dica">Do primeiro contato até fechar — pode ser informal</span>
+        <textarea id="f_processo" placeholder="Ex: Cliente manda mensagem, respondo, mando preço e tento agendar. Se não fechar em 2 dias, esqueço. Ou: temos script, CRM, acompanhamos cada lead..."></textarea>
+      </div>
+
+      <div class="campo">
+        <label class="campo-label">Taxa de conversão de lead para venda</label>
+        <div class="opcoes">
+          <label class="opcao"><input type="radio" name="conv" value="Não meço / não sei"> Não meço / não sei</label>
+          <label class="opcao"><input type="radio" name="conv" value="Menos de 10%"> Menos de 10%</label>
+          <label class="opcao"><input type="radio" name="conv" value="10 a 20%"> 10 a 20%</label>
+          <label class="opcao"><input type="radio" name="conv" value="20 a 40%"> 20 a 40%</label>
+          <label class="opcao"><input type="radio" name="conv" value="Mais de 40%"> Mais de 40%</label>
         </div>
+      </div>
+
+      <div class="secao">Seus dados de contato</div>
+
+      <div class="campo">
+        <label class="campo-label">Seu nome completo <span class="req">*</span></label>
+        <input type="text" id="f_responsavel" placeholder="Nome de quem está preenchendo">
+        <span class="erro-msg" id="err_resp">Informe seu nome.</span>
       </div>
 
       <div class="cols2">
-        <div class="field">
-          <label class="field-label">Taxa de conversão (lead › venda)</label>
-          <select id="f_conv">
-            <option value="">Selecione...</option>
-            <option>Não meço / não sei</option>
-            <option>Menos de 10%</option>
-            <option>10 a 20%</option>
-            <option>20 a 40%</option>
-            <option>Mais de 40%</option>
-          </select>
+        <div class="campo">
+          <label class="campo-label">WhatsApp <span class="req">*</span></label>
+          <input type="tel" id="f_wa" placeholder="(21) 99999-9999">
+          <span class="erro-msg" id="err_wa">Informe o WhatsApp.</span>
         </div>
-        <div class="field">
-          <label class="field-label">CRM / gestão de leads</label>
-          <select id="f_crm">
-            <option value="">Selecione...</option>
-            <option>CRM profissional (RD, HubSpot…)</option>
-            <option>Planilha Excel / Google Sheets</option>
-            <option>Não acompanha formalmente</option>
-          </select>
+        <div class="campo">
+          <label class="campo-label">E-mail</label>
+          <input type="email" id="f_email" placeholder="seu@email.com.br">
         </div>
       </div>
 
-      <div class="field">
-        <label class="field-label">Nome completo do responsável <span class="req">*</span></label>
-        <input type="text" id="f_responsavel" placeholder="Quem está preenchendo este formulário">
-        <span class="error-msg" id="err_resp">Informe o nome do responsável.</span>
-      </div>
-
-      <div class="field">
-        <label class="field-label">WhatsApp para contato <span class="req">*</span></label>
-        <input type="tel" id="f_contato_wa" placeholder="(21) 99999-9999">
-        <span class="error-msg" id="err_wa">Informe o WhatsApp para contato.</span>
-      </div>
-
-      <div class="field">
-        <label class="field-label">E-mail</label>
-        <input type="email" id="f_email" placeholder="contato@empresa.com.br">
-      </div>
-
-      <div class="field">
-        <label class="field-label">Observações finais</label>
-        <textarea id="f_obs" placeholder="Algo importante que devemos saber antes de iniciar a estratégia..."></textarea>
+      <div class="campo">
+        <label class="campo-label">Quer deixar mais alguma informação?</label>
+        <textarea id="f_obs" placeholder="Qualquer coisa que acha importante contar antes de começarmos."></textarea>
       </div>
 
       <div class="info-box">
-        <strong>Ao clicar em Enviar</strong>
-        <p>Suas respostas serão salvas de forma segura e entraremos em contato em até 24 horas úteis com a estratégia personalizada.</p>
+        <strong>O que acontece depois</strong>
+        <p>Vamos analisar o briefing e entrar em contato pelo WhatsApp em até 24 horas úteis com a estratégia personalizada para o seu negócio.</p>
       </div>
 
-      <button class="btn-submit" id="btn-submit" onclick="submitForm()">
-        <span id="submit-label">Enviar briefing</span>
-        <svg id="submit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-        <div class="spinner hidden" id="submit-spinner"></div>
+      <button class="btn-submit" id="btn-submit" onclick="enviar()">
+        <span id="lbl-enviar">Enviar briefing</span>
+        <svg id="ico-enviar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        <div class="spinner hidden" id="spinner"></div>
       </button>
     </div>
 
-    <!-- Success -->
-    <div class="step-panel hidden" id="step-success">
-      <div class="success-screen">
-        <div class="success-ring">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    <!-- SUCESSO -->
+    <div class="step-panel hidden" id="step-ok">
+      <div class="sucesso">
+        <div class="sucesso-ring">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <h2>Briefing recebido</h2>
-        <p>Obrigado por preencher. Analisaremos suas respostas e entraremos em contato em até 24 horas úteis com a estratégia personalizada.</p>
-        <div class="success-detail">
-          Fique de olho no WhatsApp informado — enviaremos uma confirmação em breve.
-        </div>
+        <h2>Briefing recebido!</h2>
+        <p>Obrigado por preencher. Nossa equipe vai analisar as respostas e entrar em contato pelo WhatsApp em até 24 horas úteis com a estratégia personalizada.</p>
+        <div class="sucesso-box">Fique de olho no WhatsApp informado — vamos entrar em contato em breve.</div>
       </div>
     </div>
 
-    <!-- Nav -->
+    <!-- Navegação -->
     <div class="nav-row" id="nav-row">
-      <button class="btn-back hidden" id="btn-back" onclick="prevStep()">
+      <button class="btn-back hidden" id="btn-back" onclick="voltar()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         Voltar
       </button>
-      <span class="step-counter" id="step-counter">1 de 6</span>
-      <button class="btn-next" id="btn-next" onclick="nextStep()">
+      <span class="contador" id="contador">1 de 6</span>
+      <button class="btn-next" id="btn-next" onclick="avancar()">
         Continuar
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
       </button>
     </div>
   </div>
 
-  <div class="site-footer">
+  <div class="rodape">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-    Formulário seguro — dados salvos de forma privada
+    Formulário seguro · Dados enviados de forma privada
   </div>
 
 </div>
-
 <script>
-  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbz1-Et7cuWk-uM-UkztbydOHuMKYQybWsuTOQEeh7P36of-aKn-uBr0EdyvBsJEKSmn/exec';
+var SHEET_URL='https://script.google.com/macros/s/AKfycbz1-Et7cuWk-uM-UkztbydOHuMKYQybWsuTOQEeh7P36of-aKn-uBr0EdyvBsJEKSmn/exec';
 
-  var currentStep = 1;
-  var totalSteps = 6;
+// ── Cidades por estado ──────────────────────────────────────────
+var CIDADES={
+  AC:['Rio Branco','Cruzeiro do Sul','Sena Madureira','Tarauacá','Feijó','Outro'],
+  AL:['Maceió','Arapiraca','Rio Largo','Palmeira dos Índios','União dos Palmares','Outro'],
+  AP:['Macapá','Santana','Laranjal do Jari','Oiapoque','Outro'],
+  AM:['Manaus','Parintins','Itacoatiara','Manacapuru','Coari','Outro'],
+  BA:['Salvador','Feira de Santana','Vitória da Conquista','Camaçari','Itabuna','Ilhéus','Juazeiro','Lauro de Freitas','Outro'],
+  CE:['Fortaleza','Caucaia','Juazeiro do Norte','Maracanaú','Sobral','Crato','Itapipoca','Outro'],
+  DF:['Brasília','Outro'],
+  ES:['Vitória','Vila Velha','Cariacica','Serra','Linhares','São Mateus','Outro'],
+  GO:['Goiânia','Aparecida de Goiânia','Anápolis','Rio Verde','Luziânia','Águas Lindas de Goiás','Outro'],
+  MA:['São Luís','Imperatriz','São José de Ribamar','Timon','Caxias','Codó','Outro'],
+  MT:['Cuiabá','Várzea Grande','Rondonópolis','Sinop','Tangará da Serra','Outro'],
+  MS:['Campo Grande','Dourados','Três Lagoas','Corumbá','Grande Dourados','Outro'],
+  MG:['Belo Horizonte','Uberlândia','Contagem','Juiz de Fora','Betim','Montes Claros','Ribeirão das Neves','Uberaba','Governador Valadares','Outro'],
+  PA:['Belém','Ananindeua','Santarém','Marabá','Castanhal','Outro'],
+  PB:['João Pessoa','Campina Grande','Santa Rita','Patos','Bayeux','Outro'],
+  PR:['Curitiba','Londrina','Maringá','Ponta Grossa','Cascavel','São José dos Pinhais','Foz do Iguaçu','Outro'],
+  PE:['Recife','Caruaru','Olinda','Petrolina','Paulista','Jaboatão dos Guararapes','Camarajibe','Outro'],
+  PI:['Teresina','Parnaíba','Picos','Piripiri','Floriano','Outro'],
+  RJ:['Rio de Janeiro','São Gonçalo','Duque de Caxias','Nova Iguaçu','Belford Roxo','São João de Meriti','Nilópolis','Mesquita','Queimados','Japeri','Seropédica','Itaguaí','Niterói','Campos dos Goytacazes','Petrópolis','Volta Redonda','Macaé','Magé','Angra dos Reis','Nova Friburgo','Barra Mansa','Teresópolis','Cabo Frio','Outro'],
+  RN:['Natal','Mossoró','Parnamirim','São Gonçalo do Amarante','Ceará-Mirim','Outro'],
+  RS:['Porto Alegre','Caxias do Sul','Pelotas','Canoas','Santa Maria','Gravataí','Viamão','Novo Hamburgo','Outro'],
+  RO:['Porto Velho','Ji-Paraná','Ariquemes','Vilhena','Cacoal','Outro'],
+  RR:['Boa Vista','Rorainópolis','Outro'],
+  SC:['Florianópolis','Joinville','Blumenau','São José','Criciúma','Chapecó','Itajaí','Outro'],
+  SP:['São Paulo','Guarulhos','Campinas','São Bernardo do Campo','Santo André','Osasco','Ribeirão Preto','Sorocaba','Santos','Mauá','São José dos Campos','Mogi das Cruzes','São José do Rio Preto','Outro'],
+  SE:['Aracaju','Nossa Senhora do Socorro','Lagarto','Itabaiana','Outro'],
+  TO:['Palmas','Araguaína','Gurupi','Porto Nacional','Outro']
+};
 
-  function initDots() {
-    var wrap = document.getElementById('step-dots');
-    wrap.innerHTML = '';
-    for (var i = 1; i <= totalSteps; i++) {
-      var d = document.createElement('div');
-      d.className = 'step-dot' + (i === 1 ? ' active' : '');
-      d.id = 'dot-' + i;
-      wrap.appendChild(d);
-    }
-  }
-
-  function updateProgress(step) {
-    var pct = Math.round((step / totalSteps) * 100);
-    document.getElementById('prog-fill').style.width = pct + '%';
-    document.getElementById('prog-pct').textContent = pct + '%';
-    document.getElementById('prog-label').textContent = 'Etapa ' + step + ' de ' + totalSteps;
-    document.getElementById('step-counter').textContent = step + ' de ' + totalSteps;
-    for (var i = 1; i <= totalSteps; i++) {
-      var d = document.getElementById('dot-' + i);
-      if (!d) continue;
-      d.className = 'step-dot' + (i < step ? ' done' : i === step ? ' active' : '');
-    }
-    document.getElementById('btn-back').classList.toggle('hidden', step === 1);
-    document.getElementById('btn-next').style.display = step === totalSteps ? 'none' : '';
-  }
-
-  function showStep(n) {
-    for (var i = 1; i <= totalSteps; i++) {
-      var p = document.getElementById('step' + i);
-      if (p) p.classList.toggle('hidden', i !== n);
-    }
-    document.getElementById('step-success').classList.add('hidden');
-    updateProgress(n);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  document.addEventListener('change', function(e) {
-    var t = e.target;
-    if (t.type === 'radio') {
-      document.querySelectorAll('input[name="' + t.name + '"]').forEach(function(s) {
-        s.closest('.radio-item').classList.toggle('selected', s.checked);
-      });
-    }
-    if (t.type === 'checkbox') {
-      t.closest('.check-item').classList.toggle('selected', t.checked);
-    }
+function carregarCidades(){
+  var uf=document.getElementById('f_estado').value;
+  var sel=document.getElementById('f_cidade');
+  sel.innerHTML='<option value="">Selecione...</option>';
+  document.getElementById('outro_cidade').classList.remove('visivel');
+  if(!uf||!CIDADES[uf])return;
+  CIDADES[uf].forEach(function(c){
+    var o=document.createElement('option');
+    o.value=c;o.textContent=c;sel.appendChild(o);
   });
+}
 
-  function toggleExtra(show) {
-    document.getElementById('extra-historico').classList.toggle('hidden', !show);
-  }
+function outro(sel,campoId){
+  var campo=document.getElementById(campoId);
+  if(!campo)return;
+  campo.classList.toggle('visivel',sel.value==='Outro');
+}
 
-  function setErr(id, show) {
-    var el = document.getElementById(id);
-    if (el) el.classList.toggle('show', show);
-    return show;
-  }
+// ── Steps ────────────────────────────────────────────────────────
+var stepAtual=1,total=6;
 
-  function validateStep(n) {
-    var fail = false;
-    if (n === 1) {
-      if (setErr('err_nome', !document.getElementById('f_nome').value.trim())) fail = true;
-      if (setErr('err_seg', !document.getElementById('f_segmento').value)) fail = true;
-      if (setErr('err_cid', !document.getElementById('f_cidade').value)) fail = true;
-      if (setErr('err_tick', !document.getElementById('f_ticket').value)) fail = true;
-    }
-    if (n === 4) {
-      if (setErr('err_hist', !document.querySelector('input[name="historico"]:checked'))) fail = true;
-    }
-    if (n === 5) {
-      if (setErr('err_budget', !document.querySelector('input[name="budget"]:checked'))) fail = true;
-      if (setErr('err_obj', !document.querySelector('input[name="objetivo"]:checked'))) fail = true;
-    }
-    if (n === 6) {
-      if (setErr('err_resp', !document.getElementById('f_responsavel').value.trim())) fail = true;
-      if (setErr('err_wa', !document.getElementById('f_contato_wa').value.trim())) fail = true;
-    }
-    return !fail;
-  }
+function initDots(){
+  var w=document.getElementById('step-dots');w.innerHTML='';
+  for(var i=1;i<=total;i++){var d=document.createElement('div');d.className='step-dot'+(i===1?' active':'');d.id='dot-'+i;w.appendChild(d);}
+}
 
-  function nextStep() {
-    if (!validateStep(currentStep)) return;
-    if (currentStep < totalSteps) { currentStep++; showStep(currentStep); }
-  }
+function atualizarUI(step){
+  var pct=Math.round(step/total*100);
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('prog-pct').textContent=pct+'%';
+  document.getElementById('prog-label').textContent='Etapa '+step+' de '+total;
+  document.getElementById('contador').textContent=step+' de '+total;
+  for(var i=1;i<=total;i++){var d=document.getElementById('dot-'+i);if(d)d.className='step-dot'+(i<step?' done':i===step?' active':'');}
+  document.getElementById('btn-back').classList.toggle('hidden',step===1);
+  document.getElementById('btn-next').style.display=step===total?'none':'';
+}
 
-  function prevStep() {
-    if (currentStep > 1) { currentStep--; showStep(currentStep); }
-  }
+function mostrarStep(n){
+  for(var i=1;i<=total;i++){var p=document.getElementById('step'+i);if(p)p.classList.toggle('hidden',i!==n);}
+  document.getElementById('step-ok').classList.add('hidden');
+  atualizarUI(n);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 
-  function getChecked(id) {
-    return Array.from(document.querySelectorAll('#' + id + ' input:checked')).map(function(i) { return i.value; }).join('; ') || '';
-  }
-  function getRadio(name) {
-    var el = document.querySelector('input[name="' + name + '"]:checked');
-    return el ? el.value : '';
-  }
-  function getVal(id) {
-    var el = document.getElementById(id);
-    return el ? el.value.trim() : '';
-  }
+// Estilizar ao marcar
+document.addEventListener('change',function(e){
+  var t=e.target;
+  if(t.type==='radio'){document.querySelectorAll('input[name="'+t.name+'"]').forEach(function(s){s.closest('.opcao').classList.toggle('sel',s.checked);});}
+  if(t.type==='checkbox'){t.closest('.opcao').classList.toggle('sel',t.checked);}
+});
 
-  function collectData() {
-    return {
-      'Data/Hora': new Date().toLocaleString('pt-BR'),
-      'Empresa': getVal('f_nome'),
-      'Segmento': getVal('f_segmento'),
-      'Município': getVal('f_cidade'),
-      'Bairros': getVal('f_bairros'),
-      'Tempo de mercado': getVal('f_tempo'),
-      'Ticket médio': getVal('f_ticket'),
-      'Concorrente': getVal('f_concorrente'),
-      'Diferencial': getVal('f_diferencial'),
-      'Faixa etária': getVal('f_idade'),
-      'Gênero': getVal('f_genero'),
-      'Renda': getRadio('renda'),
-      'Como chega': getChecked('chk_origem'),
-      'Dores / objeções': getVal('f_dores'),
-      'Site': getRadio('site'),
-      'URL site': getVal('f_site_url'),
-      'Redes sociais': getChecked('chk_redes'),
-      'Google Meu Negócio': getVal('f_gmn'),
-      'Resp. WhatsApp': getVal('f_whats'),
-      'Pixel instalado': getRadio('pixel'),
-      'Histórico campanhas': getRadio('historico'),
-      'Plataformas anteriores': getChecked('chk_plat'),
-      'Investimento anterior': getVal('f_invest_ant'),
-      'Resultado anterior': getVal('f_result_ant'),
-      'Base remarketing': getRadio('base'),
-      'Budget mensal': getRadio('budget'),
-      'Objetivo': getRadio('objetivo'),
-      'Meta leads/mês': getVal('f_meta_leads'),
-      'Meta vendas/mês': getVal('f_meta_vendas'),
-      'CPL máximo': getVal('f_cpl'),
-      'Sazonalidade': getVal('f_sazon'),
-      'Time de vendas': getVal('f_time'),
-      'Capacidade leads/dia': getVal('f_capacidade'),
-      'Script de vendas': getRadio('script'),
-      'Taxa de conversão': getVal('f_conv'),
-      'CRM': getVal('f_crm'),
-      'Responsável': getVal('f_responsavel'),
-      'WhatsApp contato': getVal('f_contato_wa'),
-      'E-mail': getVal('f_email'),
-      'Observações': getVal('f_obs'),
-    };
+function toggleExtra(show){document.getElementById('extra-historico').classList.toggle('hidden',!show);}
+
+function setErro(id,v){var el=document.getElementById(id);if(el)el.classList.toggle('show',v);return v;}
+
+function validar(n){
+  var f=false;
+  if(n===1){
+    if(setErro('err_nome',!document.getElementById('f_nome').value.trim()))f=true;
+    if(setErro('err_seg',!document.getElementById('f_segmento').value))f=true;
+    if(setErro('err_estado',!document.getElementById('f_estado').value))f=true;
+    if(setErro('err_cid',!document.getElementById('f_cidade').value))f=true;
+    if(setErro('err_tick',!document.getElementById('f_ticket').value.trim()))f=true;
   }
-
-  function submitForm() {
-    if (!validateStep(6)) return;
-    var btn = document.getElementById('btn-submit');
-    var label = document.getElementById('submit-label');
-    var icon = document.getElementById('submit-icon');
-    var spinner = document.getElementById('submit-spinner');
-    btn.disabled = true;
-    label.textContent = 'Enviando...';
-    icon.classList.add('hidden');
-    spinner.classList.remove('hidden');
-
-    if (SHEET_URL === 'https://script.google.com/macros/s/AKfycbz1-Et7cuWk-uM-UkztbydOHuMKYQybWsuTOQEeh7P36of-aKn-uBr0EdyvBsJEKSmn/exec') {
-      setTimeout(showSuccess, 1400);
-      return;
-    }
-    fetch(SHEET_URL, {
-      method: 'POST', mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(collectData()),
-    }).then(showSuccess).catch(showSuccess);
+  if(n===4)if(setErro('err_hist',!document.querySelector('input[name="historico"]:checked')))f=true;
+  if(n===5){
+    if(setErro('err_budget',!document.querySelector('input[name="budget"]:checked')))f=true;
+    if(setErro('err_obj',!document.querySelector('input[name="objetivo"]:checked')))f=true;
   }
-
-  function showSuccess() {
-    for (var i = 1; i <= totalSteps; i++) {
-      var p = document.getElementById('step' + i);
-      if (p) p.classList.add('hidden');
-    }
-    document.getElementById('step-success').classList.remove('hidden');
-    document.getElementById('nav-row').classList.add('hidden');
-    document.getElementById('prog-fill').style.width = '100%';
-    document.getElementById('prog-pct').textContent = '100%';
-    document.getElementById('prog-label').textContent = 'Concluído';
-    for (var i = 1; i <= totalSteps; i++) {
-      var d = document.getElementById('dot-' + i);
-      if (d) d.className = 'step-dot done';
-    }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  if(n===6){
+    if(setErro('err_resp',!document.getElementById('f_responsavel').value.trim()))f=true;
+    if(setErro('err_wa',!document.getElementById('f_wa').value.trim()))f=true;
   }
+  return !f;
+}
 
-  initDots();
-  showStep(1);
+function avancar(){if(!validar(stepAtual))return;if(stepAtual<total){stepAtual++;mostrarStep(stepAtual);}}
+function voltar(){if(stepAtual>1){stepAtual--;mostrarStep(stepAtual);}}
+
+// ── Coleta de dados ──────────────────────────────────────────────
+function getChecked(id){return Array.from(document.querySelectorAll('#'+id+' input:checked')).map(function(i){return i.value;}).join('; ')||'';}
+function getRadio(n){var el=document.querySelector('input[name="'+n+'"]:checked');return el?el.value:'';}
+function getVal(id){var el=document.getElementById(id);return el?el.value.trim():'';}
+function getSelect(id,outroId,outroInputId){
+  var v=getVal(id);
+  if(v==='Outro'){var o=getVal(outroInputId);return o?'Outro: '+o:'Outro';}
+  return v;
+}
+
+function coletar(){
+  var estado=getVal('f_estado');
+  var cidade=getSelect('f_cidade','outro_cidade','f_cidade_outro');
+  return{
+    'Data e Hora':          new Date().toLocaleString('pt-BR'),
+    'Empresa':              getVal('f_nome'),
+    'Segmento':             getSelect('f_segmento','outro_segmento','f_segmento_outro'),
+    'Estado (UF)':          estado,
+    'Município':            cidade,
+    'Bairros / região':     getVal('f_bairros'),
+    'Tempo de mercado':     getVal('f_tempo'),
+    'Ticket médio':         getVal('f_ticket'),
+    'Concorrente':          getVal('f_concorrente'),
+    'Diferencial':          getVal('f_diferencial'),
+    'Cliente ideal':        getVal('f_cliente_livre'),
+    'Faixa etária':         getVal('f_idade'),
+    'Gênero':               getVal('f_genero'),
+    'Renda estimada':       getRadio('renda'),
+    'Como chega hoje':      getChecked('chk_origem'),
+    'Objeções / dores':     getVal('f_dores'),
+    'Tem site':             getRadio('site'),
+    'URL do site':          getVal('f_site_url'),
+    'Redes sociais':        getChecked('chk_redes'),
+    'Google Meu Negócio':   getVal('f_gmn'),
+    'Resp. WhatsApp':       getVal('f_whats'),
+    'Pixel instalado':      getRadio('pixel'),
+    'Histórico campanhas':  getRadio('historico'),
+    'Plataformas anteriores':getChecked('chk_plat'),
+    'Investimento anterior':getVal('f_invest_ant'),
+    'Resultado anterior':   getVal('f_result_ant'),
+    'Base remarketing':     getRadio('base'),
+    'Budget mensal':        getRadio('budget'),
+    'Objetivo campanha':    getRadio('objetivo'),
+    'Meta livre':           getVal('f_meta_livre'),
+    'Meta leads/mês':       getVal('f_meta_leads'),
+    'Meta vendas/mês':      getVal('f_meta_vendas'),
+    'Sazonalidade':         getVal('f_sazon'),
+    'Time de vendas':       getVal('f_time'),
+    'Capacidade leads/dia': getVal('f_capacidade'),
+    'Processo de vendas':   getVal('f_processo'),
+    'Taxa de conversão':    getRadio('conv'),
+    'Responsável':          getVal('f_responsavel'),
+    'WhatsApp contato':     getVal('f_wa'),
+    'E-mail':               getVal('f_email'),
+    'Observações finais':   getVal('f_obs'),
+  };
+}
+
+function enviar(){
+  if(!validar(6))return;
+  var btn=document.getElementById('btn-submit');
+  var lbl=document.getElementById('lbl-enviar');
+  var ico=document.getElementById('ico-enviar');
+  var sp=document.getElementById('spinner');
+  btn.disabled=true;lbl.textContent='Enviando...';
+  ico.classList.add('hidden');sp.classList.remove('hidden');
+  fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(coletar())})
+  .then(sucesso).catch(sucesso);
+}
+
+function sucesso(){
+  for(var i=1;i<=total;i++){var p=document.getElementById('step'+i);if(p)p.classList.add('hidden');}
+  document.getElementById('step-ok').classList.remove('hidden');
+  document.getElementById('nav-row').classList.add('hidden');
+  document.getElementById('prog-fill').style.width='100%';
+  document.getElementById('prog-pct').textContent='100%';
+  document.getElementById('prog-label').textContent='Concluído';
+  for(var i=1;i<=total;i++){var d=document.getElementById('dot-'+i);if(d)d.className='step-dot done';}
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+initDots();mostrarStep(1);
 </script>
 </body>
 </html>
