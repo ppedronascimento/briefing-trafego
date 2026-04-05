@@ -839,7 +839,8 @@ function enviar(){
   var sp=document.getElementById('spinner');
   btn.disabled=true;lbl.textContent='Enviando...';
   ico.classList.add('hidden');sp.classList.remove('hidden');
-  fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(coletar())})
+  var url = SHEET_URL + '?dados=' + encodeURIComponent(JSON.stringify(coletar()));
+  fetch(url, { method: 'GET', mode: 'no-cors' })
   .then(sucesso).catch(sucesso);
 }
 
